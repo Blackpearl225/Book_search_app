@@ -227,6 +227,8 @@ function removeBookFromResultPage(divParent,divDisplayBookSave,book,tabBooskSave
 function addBooksSavedToHomePage()
 {
     var tab =JSON.parse(sessionStorage.getItem("book"))
+    if(!tab)
+      tab = []
     tab.forEach((bookSaved) =>{
 
       var divContainer = document.createElement("div")
@@ -270,7 +272,7 @@ function addBooksSavedToHomePage()
       divElt.appendChild(divImg)
       divContainer.appendChild(divElt)
       document.getElementById("books_saved").appendChild(divElt)
-      
+
   })
 }
 searchButton.addEventListener("click",displayBooksearchResult)
