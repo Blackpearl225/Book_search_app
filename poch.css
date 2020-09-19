@@ -168,33 +168,33 @@ hr.delimiter
 	margin-top: 5px;
 	text-align: center;
 }
-#title
+.title
 { 
     text-align:left
 }
-#id
+.id
 {
     text-align:left;
     font-style:oblique
 }
-#author
+.author
 {
 	text-align:left;
 }
-#descr
+.descr
 {
 	font-weight:normal;
 	margin-bottom:2px;
 	text-align: left;
 }
-#image_results_container
+.image_results_container
 {
 
 	height: 200px;
 	width: 200px;
 	margin:20px;
 }
-#bookmark_btn
+.bookmark_btn
 {
 
 	background-color: #8080804a;
@@ -207,12 +207,12 @@ hr.delimiter
 	right:2px;
 	
 }
-#bookmark_btn:hover
+.bookmark_btn:hover
 {
 	opacity: 1;
 }
 
-#ma_poch
+.ma_poch
 {
 
 	display: flex;

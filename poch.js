@@ -67,14 +67,15 @@ function displayBooksfound(books)
       else 
         var imageLink = "unavailable.png"
         
-        //Setting  variable attribute
-      buttonBookmarkElt.id="bookmark_btn"
+      //Setting  variable attribute
+      buttonBookmarkElt.classList.add = "bookmark_btn"
       imageElt.setAttribute("src",imageLink)
-      idElt.id="id"
-      authorElt.id="author"
-      titleElt.id="title"
-      descriptionElt.id="descr"
-      imageElt.id = "image_results_container"
+      idElt.classList.add = "id"
+      authorElt.classList.add = "author"
+      titleElt.classList.add = "title"
+      descriptionElt.classList.add = "descr"
+
+      imageElt.classList.add = "image_results_container"
       titleElt.textContent=book.volumeInfo.title
       idElt.textContent = book.id
       authorElt.textContent = book.volumeInfo.authors[0]
@@ -160,6 +161,7 @@ function saveBookToResultPage(books)
     else
     {
 
+      console.log("Hello")
       tableBooksSaved.push(books)
       sessionStorage.setItem("book",JSON.stringify(tableBooksSaved))
       var lastBookSaved = tableBooksSaved[tableBooksSaved.length -1]
@@ -181,21 +183,22 @@ function saveBookToResultPage(books)
         var imageLink = "unavailable.png"
         
       //Setting  variable attribute
-      divContainer.id = "ma_poch"
-      buttonBookmarkElt.id="bookmark_btn"
+      divContainer.classList.add = "ma_poch"
+      buttonBookmarkElt.classList.add = "bookmark_btn"
       imageElt.setAttribute("src",imageLink)
-      idElt.id="id"
-      authorElt.id="author"
-      titleElt.id="title"
-      descriptionElt.id="descr"
-      imageElt.id = "image_results_container"
-      titleElt.textContent=book.volumeInfo.title
-      idElt.textContent = book.id
+      idElt.classList.add = "id"
+      authorElt.classList.add = "author" 
+      titleElt.classList.add = "title"
+      descriptionElt.classList.add = "descr"
+      imageElt.classList.add = "image_results_container"
+
+      titleElt.textContent = "Auteur: "+book.volumeInfo.title
+      idElt.textContent = "id: "+book.id
       authorElt.textContent = book.volumeInfo.authors[0]
 
       if(book.volumeInfo.description)
       {
-        descriptionElt.textContent = book.volumeInfo.description
+        descriptionElt.textContent = "Description: "+book.volumeInfo.description
         limitBookDescriptionToThe200Firstcharacters(descriptionElt)
       }
       else
@@ -224,7 +227,7 @@ function removeBookFromResultPage(divParent,divDisplayBookSave,book,tabBooskSave
 
 }
 
-function addBooksSavedToHomePage()
+function addSavedBooksToHomePage()
 {
     var tab =JSON.parse(sessionStorage.getItem("book"))
     if(!tab)
@@ -245,20 +248,20 @@ function addBooksSavedToHomePage()
       else 
         var imageLink = "unavailable.png"
       //Setting  variable attribute
-      divContainer.id = "ma_poch"
+      divContainer.classList.add = "ma_poch"
       imageElt.setAttribute("src",imageLink)
-      idElt.id="id"
-      authorElt.id="author"
-      titleElt.id="title"
-      descriptionElt.id="descr"
-      imageElt.id = "image_results_container"
-      titleElt.textContent=bookSaved.volumeInfo.title
-      idElt.textContent = bookSaved.id
-      authorElt.textContent = bookSaved.volumeInfo.authors[0]
+      idElt.classList.add = "id"
+      authorElt.classList.add =" author"
+      titleElt.classList.add = "title"
+      descriptionElt.classList.add = "descr"
+      imageElt.classList.add = "image_results_container"
+      titleElt.textContent = "Titre :"+bookSaved.volumeInfo.title
+      idElt.textContent = "id: "+bookSaved.id
+      authorElt.textContent = "Auteur :"+bookSaved.volumeInfo.authors[0]
 
       if(bookSaved.volumeInfo.description)
       {
-        descriptionElt.textContent = bookSaved.volumeInfo.description
+        descriptionElt.textContent = "Description :"+bookSaved.volumeInfo.description
         limitBookDescriptionToThe200Firstcharacters(descriptionElt)
       }
       else
@@ -276,4 +279,4 @@ function addBooksSavedToHomePage()
   })
 }
 searchButton.addEventListener("click",displayBooksearchResult)
-addBooksSavedToHomePage()
+addSavedBooksToHomePage()
