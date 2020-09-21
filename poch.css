@@ -1,9 +1,10 @@
 body
 {
 
-   	background: url('wood.jpg');
+   	background: url('images/wood.jpg');
 
 }
+
 .logo
 {
 
@@ -17,14 +18,14 @@ body
 	font-style: oblique;
 	margin-top: 0px;
 }
+
 img
 {
 	width: 200px;
     height: 200px;
-    margin-left: 27px;
-    margin-bottom: 10px;
-    margin-top: 10px;
+    margin:auto;
 }
+
 .main_container
 {
     margin: auto;
@@ -36,7 +37,8 @@ img
 
 }
 
-input[type=text], select, textarea {
+input[type=text], select, textarea 
+{
 	width: 100%;
 	padding: 12px;
 	border: 1px solid #ccc;
@@ -46,7 +48,8 @@ input[type=text], select, textarea {
 	margin-bottom: 16px;
 	resize: vertical;
 	float: left;
-	}
+}
+
 #button_1
 {
 	margin-right: 600px;
@@ -59,7 +62,6 @@ input[type=text], select, textarea {
 	padding-right: 30px;
 	padding-left: 30px;
 }
-
 
 #container 
 {
@@ -77,11 +79,13 @@ input[type=text], select, textarea {
 	display: none;
 
 }
+
 label
 {
 	color:black;
 	font-size:larger
 }
+
 ::placeholder
 {
 	color:#0000009e;
@@ -91,7 +95,7 @@ label
 
 
 input[type=submit]
- {
+{
   	background-color: #45a049;
   	color: white;
   	padding: 12px 20px;
@@ -109,6 +113,7 @@ input[type=submit]:hover
 	background-color: #45a049;
 	opacity: 1;
 }
+
 .application_title
 {
 
@@ -132,6 +137,11 @@ p
 	margin-top: 20px;
 	font-style: normal;
 	font-weight: bold;
+	text-align: left;
+}
+h4
+{
+	text-align: left;
 }
 hr.delimiter
 {
@@ -151,6 +161,7 @@ hr.delimiter
 	justify-content: space-between;
 
 }
+
 .results
 {
     padding:2px;
@@ -162,31 +173,39 @@ hr.delimiter
 	background-color: #808080ba;
 
 }
+
+.results p,h4
+{
+	text-align: left;
+	font-family: Arial;
+}
+
+.results p
+{
+	font-weight: normal;
+	margin-top: 20px;
+}
+
 .no_results
 {
-
+	text-align: left;
+	font-family: Arial;
 	margin-top: 5px;
 	text-align: center;
 }
+
 .title
 { 
     text-align:left
 }
-.id
-{
-    text-align:left;
-    font-style:oblique
-}
-.author
-{
-	text-align:left;
-}
+
 .descr
 {
 	font-weight:normal;
 	margin-bottom:2px;
 	text-align: left;
 }
+
 .image_results_container
 {
 
@@ -194,7 +213,8 @@ hr.delimiter
 	width: 200px;
 	margin:20px;
 }
-.bookmark_btn
+
+#bookmark_btn
 {
 
 	background-color: #8080804a;
@@ -207,7 +227,8 @@ hr.delimiter
 	right:2px;
 	
 }
-.bookmark_btn:hover
+
+#bookmark_btn:hover
 {
 	opacity: 1;
 }
@@ -222,6 +243,7 @@ hr.delimiter
 	justify-content: space-between;
 
 }
+
 #bookmark_add
 {
 	display: flex;
@@ -230,6 +252,7 @@ hr.delimiter
 	width: 760px;
 	justify-content: space-between;
 }
+
 #books_saved
 {
 

@@ -30,81 +30,22 @@ function limitBookDescriptionToThe200Firstcharacters(description)
     }
 }
 
-function displayBooksfound(books)
+function drainedBeforePageLoading()
 {
+
+    document.getElementById("no_search_results").innerHTML = " "
     document.getElementById("search_results").innerHTML= ""
+    document.getElementById("results_title").innerHTML = " "
+    document.getElementById("bookmark_title").innerHTML = " "
     document.getElementById("book").value = ''
     document.getElementById("auth").value = ''
-    if(document.getElementById("results_title") && document.getElementById("bookmark_title"))
-    {
-      document.getElementById("results_title").innerHTML = " "
-      document.getElementById("bookmark_title").innerHTML = " "
-    }
-    var titleElt = document.createElement("p")
-    var pElt = document.createElement("p")
-    var hrElt = document.createElement("hr")
-    hrElt.classList.add("delimiter")
-    pElt.textContent = ("Ma poch'liste")
-    titleElt.textContent=("Résultats de la recherche")
-    document.getElementById("results_title").appendChild(titleElt)
-    document.getElementById("bookmark_title").appendChild(hrElt)
-    document.getElementById("bookmark_title").appendChild(pElt)
 
-    books.forEach((book) =>{
 
-      var buttonBookmarkElt =  document.createElement("button")
-      var divElt =  document.createElement("div")
-      divElt.classList.add("results")
-      var titleElt = document.createElement("h5")
-      var idElt = document.createElement("h5")
-      var authorElt = document.createElement("p")
-      var descriptionElt = document.createElement("p")
-      var divImg =  document.createElement("div")
-      var imageElt = document.createElement("img")
-
-      if(book.volumeInfo.imageLinks)
-        var imageLink = book.volumeInfo.imageLinks.smallThumbnail
-      else 
-        var imageLink = "unavailable.png"
-        
-      //Setting  variable attribute
-      buttonBookmarkElt.classList.add = "bookmark_btn"
-      imageElt.setAttribute("src",imageLink)
-      idElt.classList.add = "id"
-      authorElt.classList.add = "author"
-      titleElt.classList.add = "title"
-      descriptionElt.classList.add = "descr"
-
-      imageElt.classList.add = "image_results_container"
-      titleElt.textContent=book.volumeInfo.title
-      idElt.textContent = book.id
-      authorElt.textContent = book.volumeInfo.authors[0]
-
-      if(book.volumeInfo.description)
-      {
-          descriptionElt.textContent = book.volumeInfo.description
-          limitBookDescriptionToThe200Firstcharacters(descriptionElt)
-      }
-      else
-        descriptionElt.textContent = "Description indisponible"
-
-    // Adding element to poch'list dom 
-      buttonBookmarkElt.innerHTML = '<i class="fas fa-bookmark" style="font-size:30px;color:green"></i>'
-      divImg.appendChild(imageElt)
-      divElt.appendChild(titleElt)
-      divElt.appendChild(buttonBookmarkElt)
-      divElt.appendChild(idElt)
-      divElt.appendChild(authorElt)
-      divElt.appendChild(descriptionElt)
-      divElt.appendChild(divImg)
-      document.getElementById("search_results").appendChild(divElt)
-      buttonBookmarkElt.addEventListener("click",()=>saveBookToResultPage(book))
-    })
 }
-
 function displayNoBooksFound()
 {
 
+    document.getElementById("no_search_results").innerHTML =" "
     var divElt_1 =  document.createElement("div")
     divElt_1.classList.add("no_results")
     var titleElt = document.createElement("p")
@@ -113,6 +54,84 @@ function displayNoBooksFound()
     document.getElementById("no_search_results").appendChild(divElt_1)
 
 }
+
+function displayBooksfound(books)
+{
+    
+    drainedBeforePageLoading()
+    if(!books)
+    {
+      displayNoBooksFound()
+    }
+
+    else
+    {  
+
+      drainedBeforePageLoading()
+      var titleElt = document.createElement("p")
+      var pElt = document.createElement("p")
+      var hrElt = document.createElement("hr")
+      hrElt.classList.add("delimiter")
+      pElt.textContent = ("Ma poch'liste")
+      titleElt.textContent=("Résultats de la recherche")
+      document.getElementById("results_title").appendChild(titleElt)
+      document.getElementById("bookmark_title").appendChild(hrElt)
+      document.getElementById("bookmark_title").appendChild(pElt)
+
+      books.forEach((book) =>{
+
+        var buttonBookmarkElt =  document.createElement("button")
+        var divElt =  document.createElement("div")
+        divElt.classList.add("results")
+        var titleElt = document.createElement("h4")
+        var idElt = document.createElement("h4")
+        var authorElt = document.createElement("p")
+        var descriptionElt = document.createElement("p")
+        var divImg =  document.createElement("div")
+        var imageElt = document.createElement("img")
+
+        if(book.volumeInfo.imageLinks)
+          var imageLink = book.volumeInfo.imageLinks.smallThumbnail
+        else 
+          var imageLink = "images/unavailable.png"
+          
+        //Setting  variable attribute
+         titleElt.style.fontSize="18px"
+        idElt.style.fontSize="16px"
+        authorElt.style.fontWeight ="900"
+        authorElt.style.fontFamily="Arial"
+        authorElt.style.fontSize="14px"
+        idElt.style.fontStyle = "oblique"
+        buttonBookmarkElt.id= "bookmark_btn"
+        imageElt.setAttribute("src",imageLink)
+        imageElt.classList.add = "image_results_container"
+        titleElt.textContent= "Titre: "+book.volumeInfo.title
+        idElt.textContent = "id: "+book.id
+        authorElt.textContent = "Auteur: "+book.volumeInfo.authors[0]
+
+        if(book.volumeInfo.description)
+        {
+            descriptionElt.textContent = "Description: "+book.volumeInfo.description
+            limitBookDescriptionToThe200Firstcharacters(descriptionElt)
+        }
+        else
+          descriptionElt.textContent = "Description indisponible"
+
+      // Adding element to poch'list dom 
+        buttonBookmarkElt.innerHTML = '<i class="fas fa-bookmark" style="font-size:30px;color:green"></i>'
+        divImg.appendChild(imageElt)
+        divElt.appendChild(titleElt)
+        divElt.appendChild(buttonBookmarkElt)
+        divElt.appendChild(idElt)
+        divElt.appendChild(authorElt)
+        divElt.appendChild(descriptionElt)
+        divElt.appendChild(divImg)
+        document.getElementById("search_results").appendChild(divElt)
+        buttonBookmarkElt.addEventListener("click",()=>saveBookToResultPage(book))
+      })
+    }
+}
+
 
 function displayBooksearchResult()
 {
@@ -141,9 +160,9 @@ function displayBooksearchResult()
 
       else 
       {
-
-       displayNoBooksFound()
-
+        drainedBeforePageLoading()
+        displayNoBooksFound()
+       
       }
     }
       
@@ -170,8 +189,8 @@ function saveBookToResultPage(books)
       var buttonBookmarkElt =  document.createElement("button")
       var divElt =  document.createElement("div")
       divElt.classList.add("results")
-      var titleElt = document.createElement("h5")
-      var idElt = document.createElement("h5")
+      var titleElt = document.createElement("h4")
+      var idElt = document.createElement("h4")
       var authorElt = document.createElement("p")
       var descriptionElt = document.createElement("p")
       var divImg =  document.createElement("div")
@@ -180,25 +199,26 @@ function saveBookToResultPage(books)
       if(book.volumeInfo.imageLinks)
         var imageLink = book.volumeInfo.imageLinks.smallThumbnail
       else 
-        var imageLink = "unavailable.png"
+        var imageLink = "images/unavailable.png"
         
-      //Setting  variable attribute
+      //Setting  variable attribute titleElt.style.fontSize="18px"
+      idElt.style.fontSize="16px"
+      authorElt.style.fontWeight ="900"
+      authorElt.style.fontFamily="Arial"
+      authorElt.style.fontSize="14px"
+      idElt.style.fontStyle = "oblique"
       divContainer.classList.add = "ma_poch"
-      buttonBookmarkElt.classList.add = "bookmark_btn"
+      buttonBookmarkElt.id = "bookmark_btn"
       imageElt.setAttribute("src",imageLink)
-      idElt.classList.add = "id"
-      authorElt.classList.add = "author" 
-      titleElt.classList.add = "title"
-      descriptionElt.classList.add = "descr"
       imageElt.classList.add = "image_results_container"
 
-      titleElt.textContent = "Auteur: "+book.volumeInfo.title
-      idElt.textContent = "id: "+book.id
+      titleElt.textContent = "Auteur : "+book.volumeInfo.title
+      idElt.textContent = "id : "+book.id
       authorElt.textContent = book.volumeInfo.authors[0]
 
       if(book.volumeInfo.description)
       {
-        descriptionElt.textContent = "Description: "+book.volumeInfo.description
+        descriptionElt.textContent = "Description : "+book.volumeInfo.description
         limitBookDescriptionToThe200Firstcharacters(descriptionElt)
       }
       else
@@ -237,8 +257,8 @@ function addSavedBooksToHomePage()
       var divContainer = document.createElement("div")
       var divElt =  document.createElement("div")
       divElt.classList.add("results")
-      var titleElt = document.createElement("h5")
-      var idElt = document.createElement("h5")
+      var titleElt = document.createElement("h4")
+      var idElt = document.createElement("h4")
       var authorElt = document.createElement("p")
       var descriptionElt = document.createElement("p")
       var divImg =  document.createElement("div")
@@ -246,22 +266,24 @@ function addSavedBooksToHomePage()
       if(bookSaved.volumeInfo.imageLinks )
         var imageLink = bookSaved.volumeInfo.imageLinks.smallThumbnail
       else 
-        var imageLink = "unavailable.png"
+        var imageLink = "images/unavailable.png"
       //Setting  variable attribute
+      titleElt.style.fontSize="18px"
+      idElt.style.fontSize="16px"
+      authorElt.style.fontWeight ="900"
+      authorElt.style.fontFamily="Arial"
+      authorElt.style.fontSize="14px"
+      idElt.style.fontStyle = "oblique"
       divContainer.classList.add = "ma_poch"
-      imageElt.setAttribute("src",imageLink)
-      idElt.classList.add = "id"
-      authorElt.classList.add =" author"
-      titleElt.classList.add = "title"
-      descriptionElt.classList.add = "descr"
+      imageElt.setAttribute("src",imageLink) 
       imageElt.classList.add = "image_results_container"
-      titleElt.textContent = "Titre :"+bookSaved.volumeInfo.title
-      idElt.textContent = "id: "+bookSaved.id
-      authorElt.textContent = "Auteur :"+bookSaved.volumeInfo.authors[0]
+      titleElt.textContent = "Titre : "+bookSaved.volumeInfo.title
+      idElt.textContent = "id : "+bookSaved.id
+      authorElt.textContent = "Auteur : "+bookSaved.volumeInfo.authors[0]
 
       if(bookSaved.volumeInfo.description)
       {
-        descriptionElt.textContent = "Description :"+bookSaved.volumeInfo.description
+        descriptionElt.textContent = "Description : "+bookSaved.volumeInfo.description
         limitBookDescriptionToThe200Firstcharacters(descriptionElt)
       }
       else
