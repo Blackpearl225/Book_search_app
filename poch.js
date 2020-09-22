@@ -98,10 +98,9 @@ function displayBooksfound(books)
           var imageLink = "images/unavailable.png"
           
         //Setting  variable attribute
-        titleElt.style.fontSize="18px"
-        idElt.style.fontSize="16px"
+        titleElt.style.fontSize="17px"
+        idElt.style.fontSize="15px"
         authorElt.style.fontWeight ="900"
-        authorElt.style.fontFamily="Arial"
         authorElt.style.fontSize="14px"
         idElt.style.fontStyle = "oblique"
         buttonShowMoreDescription.id = "show_more"
@@ -226,10 +225,10 @@ function saveBookToResultPage(books)
       else 
         var imageLink = "images/unavailable.png"
         
-      //Setting  variable attribute titleElt.style.fontSize="18px"
-      idElt.style.fontSize="16px"
+      //Setting  variable attribute 
+      titleElt.style.fontSize="17px"
+      idElt.style.fontSize="15px"
       authorElt.style.fontWeight ="900"
-      authorElt.style.fontFamily="Arial"
       authorElt.style.fontSize="14px"
       idElt.style.fontStyle = "oblique"
       buttonShowMoreDescription.id = "show_more"
@@ -317,10 +316,9 @@ function addSavedBooksToHomePage()
       else 
         var imageLink = "images/unavailable.png"
       //Setting  variable attribute   
-      titleElt.style.fontSize="18px"
-      idElt.style.fontSize="16px"
+      titleElt.style.fontSize="17px"
+      idElt.style.fontSize="15px"
       authorElt.style.fontWeight ="900"
-      authorElt.style.fontFamily="Arial"
       authorElt.style.fontSize="14px"
       idElt.style.fontStyle = "oblique"
       buttonShowMoreDescription.id = "show_more"
