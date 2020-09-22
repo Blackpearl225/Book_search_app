@@ -106,7 +106,7 @@ function displayBooksfound(books)
         buttonShowMoreDescription.id = "show_more"
         buttonShowLessDescription.id = "show_less"
         buttonShowMoreDescription.innerHTML = "...Voir plus"
-        buttonShowLessDescription.innerHTML =  "Voir moins"
+        buttonShowLessDescription.innerHTML = "Voir moins"
         buttonBookmarkElt.id= "bookmark_btn"
         imageElt.setAttribute("src",imageLink)
         imageElt.classList.add = "image_results_container"
