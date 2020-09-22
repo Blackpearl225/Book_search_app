@@ -210,6 +210,8 @@ function saveBookToResultPage(books)
       var book = JSON.parse(JSON.stringify(lastBookSaved))
       var divContainer = document.createElement("div")
       var buttonBookmarkElt =  document.createElement("button")
+      var buttonShowMoreDescription = document.createElement("button")
+      var buttonShowLessDescription = document.createElement("button")
       var divElt =  document.createElement("div")
       divElt.classList.add("results")
       var titleElt = document.createElement("h4")
@@ -230,6 +232,10 @@ function saveBookToResultPage(books)
       authorElt.style.fontFamily="Arial"
       authorElt.style.fontSize="14px"
       idElt.style.fontStyle = "oblique"
+      buttonShowMoreDescription.id = "show_more"
+      buttonShowLessDescription.id = "show_less"
+      buttonShowMoreDescription.innerHTML = "...Voir plus"
+      buttonShowLessDescription.innerHTML =  "Voir moins"
       divContainer.classList.add = "ma_poch"
       buttonBookmarkElt.id = "bookmark_btn"
       imageElt.setAttribute("src",imageLink)
@@ -240,10 +246,28 @@ function saveBookToResultPage(books)
       authorElt.textContent = book.volumeInfo.authors[0]
 
       if(book.volumeInfo.description)
-      {
-        descriptionElt.textContent = "Description : "+book.volumeInfo.description
-        limitBookDescriptionToThe200Firstcharacters(descriptionElt)
-      }
+        {
+            descriptionElt.textContent = "Description: "+book.volumeInfo.description
+            if(descriptionElt.textContent.length>200)
+            {
+                limitBookDescriptionToThe200Firstcharacters(descriptionElt)
+                descriptionElt.appendChild(buttonShowMoreDescription)
+
+                buttonShowMoreDescription.addEventListener("click",function(){
+                      descriptionElt.textContent =" "
+                      descriptionElt.textContent = book.volumeInfo.description
+                      descriptionElt.appendChild(buttonShowLessDescription)
+
+                      buttonShowLessDescription.addEventListener("click",function(){
+                        
+                          limitBookDescriptionToThe200Firstcharacters(descriptionElt)
+                          descriptionElt.appendChild(buttonShowMoreDescription)
+                      })
+                })
+              }
+
+        }
+
       else
         descriptionElt.textContent = "Description indisponible"
 
@@ -278,6 +302,8 @@ function addSavedBooksToHomePage()
     tab.forEach((bookSaved) =>{
 
       var divContainer = document.createElement("div")
+      var buttonShowMoreDescription = document.createElement("button")
+      var buttonShowLessDescription = document.createElement("button")
       var divElt =  document.createElement("div")
       divElt.classList.add("results")
       var titleElt = document.createElement("h4")
@@ -290,13 +316,17 @@ function addSavedBooksToHomePage()
         var imageLink = bookSaved.volumeInfo.imageLinks.smallThumbnail
       else 
         var imageLink = "images/unavailable.png"
-      //Setting  variable attribute
+      //Setting  variable attribute   
       titleElt.style.fontSize="18px"
       idElt.style.fontSize="16px"
       authorElt.style.fontWeight ="900"
       authorElt.style.fontFamily="Arial"
       authorElt.style.fontSize="14px"
       idElt.style.fontStyle = "oblique"
+      buttonShowMoreDescription.id = "show_more"
+      buttonShowLessDescription.id = "show_less"
+      buttonShowMoreDescription.innerHTML = "...Voir plus"
+      buttonShowLessDescription.innerHTML =  "Voir moins"
       divContainer.classList.add = "ma_poch"
       imageElt.setAttribute("src",imageLink) 
       imageElt.classList.add = "image_results_container"
@@ -305,10 +335,27 @@ function addSavedBooksToHomePage()
       authorElt.textContent = "Auteur : "+bookSaved.volumeInfo.authors[0]
 
       if(bookSaved.volumeInfo.description)
-      {
-        descriptionElt.textContent = "Description : "+bookSaved.volumeInfo.description
-        limitBookDescriptionToThe200Firstcharacters(descriptionElt)
-      }
+        {
+            descriptionElt.textContent = "Description: "+bookSaved.volumeInfo.description
+            if(descriptionElt.textContent.length>200)
+            {
+                limitBookDescriptionToThe200Firstcharacters(descriptionElt)
+                descriptionElt.appendChild(buttonShowMoreDescription)
+
+                buttonShowMoreDescription.addEventListener("click",function(){
+                      descriptionElt.textContent =" "
+                      descriptionElt.textContent = bookSaved.volumeInfo.description
+                      descriptionElt.appendChild(buttonShowLessDescription)
+
+                      buttonShowLessDescription.addEventListener("click",function(){
+                        
+                          limitBookDescriptionToThe200Firstcharacters(descriptionElt)
+                          descriptionElt.appendChild(buttonShowMoreDescription)
+                      })
+                })
+              }
+
+        }
       else
         descriptionElt.textContent = "Description indisponible"
 
