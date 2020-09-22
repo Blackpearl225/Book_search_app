@@ -263,3 +263,14 @@ hr.delimiter
 	justify-content: space-between;
 
 }
+
+#show_more, #show_less
+{
+	font-weight: bold;
+	border:none;
+	font-style: oblique;
+	background-color: #d5a76c00;
+	color:black;
+	cursor: pointer;
+
+}

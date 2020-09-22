@@ -25,7 +25,7 @@ function limitBookDescriptionToThe200Firstcharacters(description)
     if(description.textContent.length > maxLength) 
     {
 
-      description.textContent = description.textContent.substr(0,maxLength) + '...'
+      description.textContent = description.textContent.substr(0,maxLength)
 
     }
 }
@@ -81,6 +81,8 @@ function displayBooksfound(books)
       books.forEach((book) =>{
 
         var buttonBookmarkElt =  document.createElement("button")
+        var buttonShowMoreDescription = document.createElement("button")
+        var buttonShowLessDescription = document.createElement("button")
         var divElt =  document.createElement("div")
         divElt.classList.add("results")
         var titleElt = document.createElement("h4")
@@ -96,12 +98,16 @@ function displayBooksfound(books)
           var imageLink = "images/unavailable.png"
           
         //Setting  variable attribute
-         titleElt.style.fontSize="18px"
+        titleElt.style.fontSize="18px"
         idElt.style.fontSize="16px"
         authorElt.style.fontWeight ="900"
         authorElt.style.fontFamily="Arial"
         authorElt.style.fontSize="14px"
         idElt.style.fontStyle = "oblique"
+        buttonShowMoreDescription.id = "show_more"
+        buttonShowLessDescription.id = "show_less"
+        buttonShowMoreDescription.innerHTML = "...Voir plus"
+        buttonShowLessDescription.innerHTML =  "Voir moins"
         buttonBookmarkElt.id= "bookmark_btn"
         imageElt.setAttribute("src",imageLink)
         imageElt.classList.add = "image_results_container"
@@ -112,7 +118,24 @@ function displayBooksfound(books)
         if(book.volumeInfo.description)
         {
             descriptionElt.textContent = "Description: "+book.volumeInfo.description
-            limitBookDescriptionToThe200Firstcharacters(descriptionElt)
+            if(descriptionElt.textContent.length>200)
+            {
+                limitBookDescriptionToThe200Firstcharacters(descriptionElt)
+                descriptionElt.appendChild(buttonShowMoreDescription)
+
+                buttonShowMoreDescription.addEventListener("click",function(){
+                      descriptionElt.textContent =" "
+                      descriptionElt.textContent = book.volumeInfo.description
+                      descriptionElt.appendChild(buttonShowLessDescription)
+
+                      buttonShowLessDescription.addEventListener("click",function(){
+                        
+                          limitBookDescriptionToThe200Firstcharacters(descriptionElt)
+                          descriptionElt.appendChild(buttonShowMoreDescription)
+                      })
+                })
+              }
+
         }
         else
           descriptionElt.textContent = "Description indisponible"
