@@ -42,8 +42,7 @@ function requiredInput()
       alert("Veuillez saisir le nom de l'auteur!")
 
     }
-    //document.getElementById("book").value = ''
-    //document.getElementById("auth").value = ''
+    
     
 }
 
@@ -206,11 +205,9 @@ function displayBooksearchResult()
         if(document.getElementById("auth").value=="" ||document.getElementById("book").value=="" )
         {
            	requiredInput()
-           	console.log("okeeeee")
          }
         else
         {
-			console.log("ok")
 			drainedBeforePageLoading()
 			displayBooksfound(books)
      	}
