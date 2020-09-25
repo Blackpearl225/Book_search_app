@@ -15,9 +15,31 @@ buttonCancel.addEventListener("click",function(){
     document.getElementById("container").style.display="none"
     document.getElementById("search_results").style.display="none"
     buttonAdd.style.display="block"
+    document.getElementById("bookmark_title").innerHTML = " "
     document.getElementById("book").value = ''
     document.getElementById("auth").value = ''
+    
 })
+
+function requiredInput()
+{
+    document.getElementById("bookmark_title").innerHTML=""
+    document.getElementById("no_search_results").innerHTML=""
+    var pElt = document.createElement("p")
+    pElt.textContent = ("Ma poch'liste")
+    document.getElementById("bookmark_title").appendChild(pElt)
+    var book = document.getElementById("book")
+    var author = document.getElementById("auth")
+    if(book.value=="" && author.value=="")
+      alert("Veuillez saisir le nom de l'auteur et le titre de l'oeuvre")
+    else if(book.value=="")
+      alert("Veuillez saisir le titre de l'oeuvre!")
+    else if(author.value=="")
+      alert("Veuillez saisir le nom de l'auteur!")
+    else
+      document.getElementById("search_results").innerHTML=""
+}
+
 
 function limitBookDescriptionToThe200Firstcharacters(description) 
 {
@@ -40,8 +62,8 @@ function drainedBeforePageLoading()
     document.getElementById("book").value = ''
     document.getElementById("auth").value = ''
 
-
 }
+
 function displayNoBooksFound()
 {
 
@@ -57,16 +79,12 @@ function displayNoBooksFound()
 
 function displayBooksfound(books)
 {
-    
-    drainedBeforePageLoading()
+   /*
     if(!books)
     {
       displayNoBooksFound()
     }
-
-    else
-    {  
-
+    */
       drainedBeforePageLoading()
       var titleElt = document.createElement("p")
       var pElt = document.createElement("p")
@@ -151,12 +169,13 @@ function displayBooksfound(books)
         document.getElementById("search_results").appendChild(divElt)
         buttonBookmarkElt.addEventListener("click",()=>saveBookToResultPage(book))
       })
-    }
+    
 }
 
 
 function displayBooksearchResult()
 {
+
     document.getElementById("container").style.display = "block";
     buttonAdd.style.display = "none";
 
@@ -177,13 +196,25 @@ function displayBooksearchResult()
       if (request.status >= 200 && request.status < 400) 
       {
 
-        displayBooksfound(books)
+        if(document.getElementById("auth").value=="" ||document.getElementById("book").value=="" || (document.getElementById("auth").value=="" &&document.getElementById("book").value==""))
+          requiredInput()
+         else
+          console.log("ok")
+          drainedBeforePageLoading()
+          displayBooksfound(books)
+
       }
 
       else 
       {
-        drainedBeforePageLoading()
-        displayNoBooksFound()
+        
+        if(document.getElementById("auth").value=="" ||document.getElementById("book").value=="")
+          requiredInput()
+         else
+         {
+           drainedBeforePageLoading()
+           displayNoBooksFound()
+         }
        
       }
     }
@@ -202,7 +233,6 @@ function saveBookToResultPage(books)
     else
     {
 
-      console.log("Hello")
       tableBooksSaved.push(books)
       sessionStorage.setItem("book",JSON.stringify(tableBooksSaved))
       var lastBookSaved = tableBooksSaved[tableBooksSaved.length -1]
@@ -337,19 +367,19 @@ function addSavedBooksToHomePage()
             descriptionElt.textContent = "Description: "+bookSaved.volumeInfo.description
             if(descriptionElt.textContent.length>200)
             {
-                limitBookDescriptionToThe200Firstcharacters(descriptionElt)
-                descriptionElt.appendChild(buttonShowMoreDescription)
+              limitBookDescriptionToThe200Firstcharacters(descriptionElt)
+              descriptionElt.appendChild(buttonShowMoreDescription)
 
-                buttonShowMoreDescription.addEventListener("click",function(){
-                      descriptionElt.textContent =" "
-                      descriptionElt.textContent = bookSaved.volumeInfo.description
-                      descriptionElt.appendChild(buttonShowLessDescription)
+              buttonShowMoreDescription.addEventListener("click",function(){
+                    descriptionElt.textContent =" "
+                    descriptionElt.textContent = bookSaved.volumeInfo.description
+                    descriptionElt.appendChild(buttonShowLessDescription)
 
-                      buttonShowLessDescription.addEventListener("click",function(){
-                        
-                          limitBookDescriptionToThe200Firstcharacters(descriptionElt)
-                          descriptionElt.appendChild(buttonShowMoreDescription)
-                      })
+                    buttonShowLessDescription.addEventListener("click",function(){
+                      
+                        limitBookDescriptionToThe200Firstcharacters(descriptionElt)
+                        descriptionElt.appendChild(buttonShowMoreDescription)
+                    })
                 })
               }
 
