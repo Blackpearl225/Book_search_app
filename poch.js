@@ -33,11 +33,18 @@ function requiredInput()
     if(book.value=="" && author.value=="")
       alert("Veuillez saisir le nom de l'auteur et le titre de l'oeuvre")
     else if(book.value=="")
-      alert("Veuillez saisir le titre de l'oeuvre!")
+    {
+		alert("Veuillez saisir le titre de l'oeuvre!")
+    }
+      
     else if(author.value=="")
+    {
       alert("Veuillez saisir le nom de l'auteur!")
-    else
-      document.getElementById("search_results").innerHTML=""
+
+    }
+    //document.getElementById("book").value = ''
+    //document.getElementById("auth").value = ''
+    
 }
 
 
@@ -196,15 +203,19 @@ function displayBooksearchResult()
       if (request.status >= 200 && request.status < 400) 
       {
 
-        if(document.getElementById("auth").value=="" ||document.getElementById("book").value=="" || (document.getElementById("auth").value=="" &&document.getElementById("book").value==""))
-          requiredInput()
-         else
-          console.log("ok")
-          drainedBeforePageLoading()
-          displayBooksfound(books)
+        if(document.getElementById("auth").value=="" ||document.getElementById("book").value=="" )
+        {
+           	requiredInput()
+           	console.log("okeeeee")
+         }
+        else
+        {
+			console.log("ok")
+			drainedBeforePageLoading()
+			displayBooksfound(books)
+     	}
 
       }
-
       else 
       {
         
