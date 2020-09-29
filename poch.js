@@ -85,12 +85,15 @@ function displayNoBooksFound()
 
 function displayBooksfound(books)
 {
-   /*
+   
     if(!books)
     {
       displayNoBooksFound()
     }
-    */
+    
+    else
+    {
+
       drainedBeforePageLoading()
       var titleElt = document.createElement("p")
       var pElt = document.createElement("p")
@@ -175,7 +178,7 @@ function displayBooksfound(books)
         document.getElementById("search_results").appendChild(divElt)
         buttonBookmarkElt.addEventListener("click",()=>saveBookToResultPage(book))
       })
-    
+    }
 }
 
 
