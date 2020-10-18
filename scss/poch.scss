@@ -1,0 +1,420 @@
+//---------------------------------------------------Variables-----------------------------------------------
+
+$center:center;
+$blackColor:black;
+$whiteColor:white;
+$centerPosition:50%;
+$obliqueFont:oblique;
+$buttonBackgroundColor:#45a049;
+$Constantfordisposition:20px;
+$alignLeft:left;
+$titleBackgroundColor:#0000005e;
+$favoriteButtonBackgroundColor:#8080804a;
+$bookBackgroundColor:#808080ba;
+$minimumWidthButton:120px;
+$minimumWithMainButton:140px;
+
+//-----------------------------------------------------Mixins------------------------------------------------
+
+@mixin disposal($textAlignement)
+{
+	margin:auto;
+	display: flex;
+	flex-direction:column;
+	text-align: $textAlignement;
+}
+@mixin disposalAndCenter($width)
+{
+	width: $width;
+	@include disposal($center);
+	align-items:$center;	
+}
+
+
+//-----------------------------------------------------------------------------------------------------------
+
+body
+{
+	background: url('../images/wood.jpg');
+}
+
+.main
+{
+	&__title
+	{
+		background-color: $titleBackgroundColor;
+		box-shadow:$Constantfordisposition/2 $Constantfordisposition/2 $Constantfordisposition/2 $blackColor;
+		color:$whiteColor;
+		text-align: $center;
+		align-items: $center;
+		font-style:$obliqueFont;
+	}
+	&__book-id
+	{
+		font-style:oblique;
+	}
+	
+	&__book-author
+	{
+		font-weight: 900;
+	}
+	&__search-form
+	{
+		padding: $Constantfordisposition;
+		@include disposal($alignLeft);
+		display: none;
+	}
+	&__delimiter
+	{
+		background-color:$blackColor;
+		height: $Constantfordisposition/20;
+	}
+	&__button
+	{
+		width: $minimumWidthButton;
+		margin-top:$Constantfordisposition/2;
+		background-color: $buttonBackgroundColor;
+		color: $whiteColor;
+		padding: $Constantfordisposition/1.6 $Constantfordisposition;
+		border: none;
+		border-radius: $Constantfordisposition/5;
+		cursor: pointer;
+		margin-bottom: $Constantfordisposition/2;
+		opacity: 0.7;
+		&:hover
+		{
+			opacity: 1;
+		}
+	}
+	&__button-principal
+	{
+		width: $minimumWithMainButton;
+	}
+	&__button--red
+	{
+		background-color:red;
+	}	
+	&__form-result
+	{
+		align-items:$center;
+	}
+	&__form-title
+	{
+		text-align: $center;
+	}
+	&__books-container
+	{
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		justify-content: space-between;
+		margin:auto;
+	}
+
+	&__book-found
+	{
+		padding:2px;
+		margin: 2%;
+		border:$Constantfordisposition/10 solid $blackColor;
+		box-shadow: $Constantfordisposition/2  $Constantfordisposition/2 $Constantfordisposition/2 $blackColor;
+		position: relative;
+		background-color: $bookBackgroundColor;
+	}
+	&__book-favorite
+	{
+		background-color: $favoriteButtonBackgroundColor;
+		border:none;
+		padding: 18px 18px;
+		cursor: pointer;
+		opacity: 0.6;
+		position:absolute;
+		top:30px;
+		right:2px;
+		&:hover
+		{
+			opacity: 1;
+		}
+	}	
+	&__book-text
+	{
+		text-align: $alignLeft;
+	}
+	&__book-image
+	{
+		width:35%;
+	}
+	&__search-result-delimiter,&__section-book-favorite-title,&__search-result-title,&__result-no-book-found
+	{
+		display: none;
+	}
+	
+}
+
+.header
+{
+	justify-content: space-between;
+	text-align: $center;
+	&__quote
+	{
+		font-style: $obliqueFont;
+		font-family:"Charmonman";
+		font-weight: bold;
+		color:$whiteColor;
+	}
+	&__image
+	{
+		margin: auto;
+		display: block;
+	}
+}
+
+input[type=text], select, textarea 
+{
+	width: 100%;
+	padding: $Constantfordisposition/1.6;
+	border: $Constantfordisposition/20 solid #ccc;
+	border-radius: $Constantfordisposition/5;
+	box-sizing: border-box;
+	margin-top: $Constantfordisposition/2;
+	margin-bottom: $Constantfordisposition/2;
+	resize: vertical;
+	float: $alignLeft;	
+}
+
+//---------------------------------------------------------------------------------------------------
+//---------------------------------------------Media queries-----------------------------------------
+//---------------------------------------------------------------------------------------------------
+
+
+$breakpoint: (
+
+	tablet: 600px,
+	desktop: 992px
+
+	);
+
+@media screen and (max-width:map-get($breakpoint,tablet))
+{
+	.main
+	{
+		@include disposalAndCenter(100%);
+		&__title
+		{
+			width:80%;
+			font-size:26px;
+		}
+		&__sub-title
+		{
+			font-size: 15px;
+		}
+		
+		&__search-form,&__delimiter,&__search-result-delimiter
+		{			
+			width: 79%;
+			
+		}
+		&__form-result,&__book-found
+		{
+			width:100%;
+		}
+		&__books-container
+		{
+			width: 83%;
+			justify-content: space-between;
+			margin:auto;
+		}
+		&__book-title
+		{
+			font-size: 13.5px;
+		}
+		&__book-id
+		{
+			font-size: 12.5px;
+		}
+		
+		&__book-author
+		{
+			font-size: 12px;
+		}
+		&__book-description
+		{
+
+			font-size: 14px;
+		}
+		&__section-book-favorite-title,&__form-title,&__search-result-title
+		{
+			font-size: 15px;
+		}
+		&__result-no-book-found
+		{
+			font-size: 15px;
+		}
+		
+	}
+
+	.header
+	{
+		&__quote
+		{
+			font-size:$Constantfordisposition;
+		}
+		&__image
+		{
+			width: 30%;
+		}	
+	}
+	label
+	{
+		font-size: 15px;
+	}	
+}
+@media screen and (min-width:map-get($breakpoint,tablet))
+{
+	.main
+	{
+		@include disposalAndCenter(100%);
+
+		&__title
+		{
+			width: 58%;
+		}
+		&__sub-title
+		{
+			font-size:$Constantfordisposition;
+		}
+		&__search-form,&__books-container,&__delimiter,&__search-result-delimiter
+		{
+			width: 57%;
+		}
+
+		&__book-found
+		{
+			width:100%;
+			
+		}
+		&__book-title
+		{
+			font-size: 15.5px;
+		}
+		&__book-id
+		{
+			font-size: 14.5px;
+		}
+		
+		&__book-author
+		{
+			font-size: 14px;
+		}
+		&__book-description
+		{
+
+			font-size: 16px;
+		}
+		&__section-book-favorite-title,&__form-title,&__search-result-title
+		{
+			font-size: 19px;
+		}
+
+		&__book-image
+		{
+			width:30%;
+		}
+		&__result-no-book-found
+		{
+			font-size: 17px;
+		}
+		
+	}
+
+	.header
+	{
+		&__quote
+		{
+			font-size:22px;
+		}
+		&__image
+		{
+			width: 20%;
+		}
+	}
+	label
+	{
+		font-size: 17px;
+	}		
+}
+
+@media screen and (min-width:map-get($breakpoint,desktop))
+{
+	.main
+	{
+		@include disposalAndCenter(80%);
+		&__title
+		{
+			width: 62%;
+		}
+		&__sub-title
+		{
+			font-size:22px;
+		}
+
+		&__search-form,&__books-container,&__delimiter,&__search-result-delimiter
+		{
+			width: 61%;
+		}
+		
+		&__book-found
+		{
+			width:44%;
+			
+		}
+		&__book-title
+		{
+			font-size: 17.5px;
+		}
+		&__book-id
+		{
+			font-size: 16.5px;
+		}
+		
+		&__book-author
+		{
+			font-size: 16px;
+		}
+		&__book-description
+		{
+
+			font-size: 18px;
+		}
+		&__section-book-favorite-title,&__form-title,&__search-result-title
+		{
+			font-size: 21px;
+		}
+		&__book-image
+		{
+			width:35%;
+		}
+		&__result-no-book-found
+		{
+			font-size: 19px;
+		}	
+	}
+	label
+	{
+		font-size: 19px;
+	}		
+	.header
+	{
+		&__image
+		{
+			width: 15%;
+		}	
+	}
+}
+
+
+
+
+
+
+
+

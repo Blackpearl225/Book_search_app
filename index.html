@@ -2,38 +2,44 @@
 <html lang="fr"> 
 <head> 
 	<meta charset = "utf-8" /> 
-	<link rel = "stylesheet" href = "poch.css" />
+	<link rel = "stylesheet" href = "scss/poch.css" />
 	<link href='https://fonts.googleapis.com/css?family=Charmonman' rel='stylesheet'>
 	<title>Poch'lib.com</title> 
 	<link rel = "stylesheet" type = "text/css" href = "fontawesome-free-5.14.0-web/css/all.css">
 </head> 
-	<body> 
-		<main>
-			<header class="logo">
-				<img src = "images/logo.png" alt="logo poch'lib">
-				<p>"Enlivrez vous avec Poch'lib"</p>
-			</header>
-				<h1 >Poch'lib</h1>
-			</div> 
-			<p>Nouveau livre</p> 
-			<div id = "container">
-				<label for = "book">Titre du livre</label>
-				<input type = "text" id = "book" name = "Book_title" placeholder = "Veuillez saisir le titre de l'oeuvre">
-				<label for = "auth">Auteur</label>
-				<input type = "text" id = "auth" name = "Author" placeholder="Veuillez saisir le nom de l'auteur">
-				<input id = "button_1" type = "submit" value = "Rechercher"> 
-				<input id = "button_2" type = "submit" value = "Annuler">			
-			</div>		
-			<input id = "button" type="submit" value = "Ajouter un livre"> 
-			<hr class="delimiter"> 
-			<p id = "poch">Ma poch'liste</p>
-			<div id = "no_search_results"></div>
-     		<div id = "results_title"></div>
-			<div id = "search_results"></div>
-     		<div id = "bookmark_title"></div>
-     		<div id = "bookmark_add"></div>
-     		<div id = "books_saved"></div>
-		</main> 
-		<script src="poch.js"></script>
-	</body> 
+<body>
+	<header class="header">
+		<img  class="header__image" src = "images/logo.png" alt="logo poch'lib">
+		<p class="header__quote">"Enlivrez vous avec Poch'lib"</p>
+	</header>
+	<main class="main">
+		<h1 class="main__title">Poch'lib</h1>
+		<h2 class="main__sub-title">Nouveau livre</h2> 
+		<button type="button" class="main__button  main__button-principal">Ajouter un livre</button>
+		<section class = "main__search-form">
+			<div>
+				<label for = "book_title">Titre du livre</label>
+				<input type = "text" id= "book_title" name = "book_title" placeholder = "Veuillez saisir le titre de l'oeuvre">
+			</div>
+			<div>
+				<label for = "book_author">Auteur</label>
+				<input type = "text" id=book_author name = "book_author" placeholder="Veuillez saisir le nom de l'auteur">
+			</div>			
+			<button type="button" class="main__button main__button-search">Rechercher</button> 
+			<button type="button" class="main__button main__button--red main__button-cancel-search">Annuler</button>
+		</section>
+		<hr class="main__delimiter"> 
+		<section class="main__form-result">
+			<h3 class="main__form-title">Ma poch'liste</h3>
+			<h4 class ="main__search-result-title">Résultats de la recherche </h4>
+			<p class="main__result-no-book-found"> Aucun livre n'as été trouvé </p>
+			<div class = "main__books-container main__display-book-search"></div>
+			<hr class="main__delimiter main__search-result-delimiter">
+			<h3 class="main__section-book-favorite-title">Ma poch'liste</h3>
+			<div class = "main__books-container main__book-add-to-favorite"></div>
+			<div class = "main__books-container main__book-saved-to-homepage"></div>
+		</section>
+	</main> 
+	<script src="js/poch.js"></script>
+</body> 
 </html>
