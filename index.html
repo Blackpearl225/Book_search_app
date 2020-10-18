@@ -4,30 +4,24 @@
 	<meta charset = "utf-8" /> 
 	<link rel = "stylesheet" href = "poch.css" />
 	<link href='https://fonts.googleapis.com/css?family=Charmonman' rel='stylesheet'>
-
 	<title>Poch'lib.com</title> 
 	<link rel = "stylesheet" type = "text/css" href = "fontawesome-free-5.14.0-web/css/all.css">
 </head> 
 	<body> 
-		<div class = "main_container"> 
-			<div class = "logo">
+		<main>
+			<header class="logo">
 				<img src = "images/logo.png" alt="logo poch'lib">
-				<p style="font-family: Charmonman;color:white;font-size: 30px">"Enlivrez vous avec Poch'lib"</p>
-			</div>
-			<div class = "application_title">
+				<p>"Enlivrez vous avec Poch'lib"</p>
+			</header>
 				<h1 >Poch'lib</h1>
 			</div> 
 			<p>Nouveau livre</p> 
 			<div id = "container">
-				<div>
-					<label for = "book">Titre du livre</label>
-					<input type = "text" id = "book" name = "Book_title" placeholder = "Veuillez saisir le titre de l'oeuvre">
-				</div>
-				<div>
-					<label for = "auth">Auteur</label>
-					<input type = "text" id = "auth" name = "Author" placeholder="Veuillez saisir le nom de l'auteur">
-				</div>	
-    			<input id = "button_1" type = "submit" value = "Rechercher"> 
+				<label for = "book">Titre du livre</label>
+				<input type = "text" id = "book" name = "Book_title" placeholder = "Veuillez saisir le titre de l'oeuvre">
+				<label for = "auth">Auteur</label>
+				<input type = "text" id = "auth" name = "Author" placeholder="Veuillez saisir le nom de l'auteur">
+				<input id = "button_1" type = "submit" value = "Rechercher"> 
 				<input id = "button_2" type = "submit" value = "Annuler">			
 			</div>		
 			<input id = "button" type="submit" value = "Ajouter un livre"> 
@@ -39,7 +33,7 @@
      		<div id = "bookmark_title"></div>
      		<div id = "bookmark_add"></div>
      		<div id = "books_saved"></div>
-		</div> 
+		</main> 
 		<script src="poch.js"></script>
 	</body> 
 </html>
