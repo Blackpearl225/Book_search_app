@@ -17,7 +17,8 @@ buttonCancelSearch[0].addEventListener("click",function(){
     buttonAddBook[0].style.display="block" 
     document.getElementsByClassName("main__search-result-delimiter")[0].style.display = "none"
     document.getElementsByClassName("main__section-book-favorite-title")[0].style.display="none"
-    document.getElementsByClassName("main__search-result-title")[0].style.display="none"   
+    document.getElementsByClassName("main__search-result-title")[0].style.display="none"
+    document.getElementsByClassName("main__books-container")[0].innerHTML="" 
 })
 
 
